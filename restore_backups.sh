@@ -9,15 +9,15 @@ function db_restore
   DB_HOST=$2
   APP_NAME=$1
   ssh deploy@$DB_HOST '<<-_eof_
-    i="9"
-    while [ $i -ge 0 ]; do
-      sudo -i eybackup -e mysql --download $i:$APP_NAME
-      if [ $? -eq 0 ]; then
-        break;
-      fi
-      i=$[$i-1]
-    done
-  _eof_
+i="9"
+while [ $i -ge 0 ]; do
+  sudo -i eybackup -e mysql --download $i:$APP_NAME
+  if [ $? -eq 0 ]; then
+    break;
+  fi
+  i=$[$i-1]
+done
+_eof_
   '
   BACKUP=`ssh deploy@$DB_HOST 'ls /mnt/tmp'`
   scp deploy@$DB_HOST:/mnt/tmp/$BACKUP ~/db
