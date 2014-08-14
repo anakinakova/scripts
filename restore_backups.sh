@@ -6,8 +6,6 @@ ADOMATIC='ec2-174-129-102-12.compute-1.amazonaws.com'
 
 function db_restore
 {
-  echo $1
-  echo $2
   DB_HOST=$2
   APP_NAME=$1
   ssh deploy@$DB_HOST '<<-_eof_
@@ -23,7 +21,8 @@ function db_restore
   '
   BACKUP=`ssh deploy@$DB_HOST 'ls /mnt/tmp'`
   scp deploy@$DB_HOST:/mnt/tmp/$BACKUP ~/db
-  mysql -u root $APP_NAME'_development' < ~/db/$BACKUP
+  gunzip ~/db/$BACKUP
+  mysql -u root $APP_NAME'_development' < ~/db/`echo $BACKUP | sed 's/\.gz//'`
 }
 
 db_restore sachin $SACHIN
