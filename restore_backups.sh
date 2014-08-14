@@ -6,8 +6,6 @@ ADOMATIC='ec2-174-129-102-12.compute-1.amazonaws.com'
 
 function db_restore
 {
-  echo $1
-  echo $2
   DB_HOST=$2
   APP_NAME=$1
   ssh deploy@$DB_HOST '<<-_eof_
