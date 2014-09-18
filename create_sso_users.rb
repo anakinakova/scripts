@@ -6,7 +6,7 @@ def create_oomph(name, role)
 end
 
 def create_user(email, role, org_name=nil, atts={})
-  org_name = email if org.nil? # like sachin, default to email
+  org_name = email if org_name.nil? # like sachin, default to email
   org = Organization.find_by(name: org_name)
 
   defaults = {
