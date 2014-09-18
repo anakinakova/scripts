@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
 
 def create_oomph(name, role)
-  email = name + "+#{role.to_s.split('_')[1]}" + '@oomphhq.com'
+  suffix = "#{role.to_s.split('_')[1]}"
+  suffix = suffix ? "+" + suffix : ''
+  email = name + suffix + '@oomphhq.com'
   create_user(email, role, 'Oomph', {first_name: name, last_name: name})
 end
 
