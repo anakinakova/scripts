@@ -28,13 +28,14 @@ def create_user(email, role, org_name=nil, atts={})
   user.organizations << org
   user.update_attributes(atts)
   user.save!
+  user.id, user.email
 end
 
 def create_three(name)
   [:oomph, :adomatic_publisher, :adomatic_delegate].each do |role|
     create_oomph(name, role)
   end
- end
+end
 
 # keep the methods, change this part (duh)
 %w(leighann james tony isabel).each {|x| create_three x}
