@@ -2,7 +2,7 @@
 
 def create_oomph(name, role)
   suffix = "#{role.to_s.split('_')[1]}"
-  suffix = suffix ? "+" + suffix : ''
+  suffix = !suffix.empty? ? "+" + suffix : ''
   email = name + suffix + '@oomphhq.com'
   create_user(email, role, 'Oomph', {first_name: name, last_name: name})
 end
