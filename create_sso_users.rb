@@ -28,7 +28,7 @@ def create_user(email, role, org_name=nil, atts={})
   user.organizations << org
   user.update_attributes(atts)
   user.save!
-  user.id, user.email
+  [user.id, user.email]
 end
 
 def create_three(name)
